@@ -18,10 +18,16 @@
             >
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn class="btnDialogNo" variant="text" @click="dialog = false">
+              <v-btn
+                variant="outlined"
+                class="btnDialogNo"
+                color="#132740"
+                @click="dialog = false"
+              >
                 Retour
               </v-btn>
               <v-btn
+                color="#132740"
                 class="btnDialogOk"
                 background-color="#94bbe9"
                 variant="text"
@@ -107,8 +113,7 @@ export default {
 }
 
 .btnDialogNo {
-  color: #94bbe9;
-  background-color: #132740;
+  color: #132740;
 }
 
 .card {

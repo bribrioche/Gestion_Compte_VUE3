@@ -5,6 +5,33 @@
     ></router-link>
 
     <div class="navigation">
+      <v-dialog v-model="dialog" persistent width="auto">
+        <v-card>
+          <v-card-title class="text-h5"> Deconnexion</v-card-title>
+
+          <v-card-text>Souhaitez-vous vous déconnecter ?</v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              variant="outlined"
+              class="btnDialogNo"
+              color="#132740"
+              @click="dialog = false"
+            >
+              Retour
+            </v-btn>
+            <v-btn
+              color="#132740"
+              class="btnDialogOk"
+              background-color="#94bbe9"
+              variant="text"
+              @click="logout"
+            >
+              Confirmer
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
       <div class="leftNav">
         <v-btn
           v-bind="props"
@@ -59,7 +86,7 @@
         variant="outlined"
         rounded="xl"
         class="btnText"
-        @click="logout"
+        @click="openConfirm"
         >Logout</v-btn
       >
     </div>
@@ -69,9 +96,13 @@
 <script>
 // import { ref } from "vue";
 import Cookies from "js-cookie";
-import { useRouter } from "vue-router";
 export default {
   name: "HeaderBanner",
+  data() {
+    return {
+      dialog: false,
+    };
+  },
   methods: {
     goToHome() {
       this.$router.push("/");
@@ -82,19 +113,14 @@ export default {
     goToBankaccount() {
       this.$router.push("/bankaccount");
     },
-  },
-  setup() {
-    const router = useRouter();
-
-    const logout = () => {
+    openConfirm() {
+      this.dialog = true;
+    },
+    logout() {
       Cookies.remove("token");
       Cookies.remove("userId");
-      router.push("/login");
-    };
-
-    return {
-      logout,
-    };
+      this.$router.push("/login");
+    },
   },
 };
 </script>
