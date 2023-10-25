@@ -1,13 +1,25 @@
 <template>
   <div class="management">
+    <div class="alert-container">
+      <div v-if="alert" class="alert">
+        <v-alert
+          color="success"
+          icon="$success"
+          :title="alertTitle"
+          :text="alertMessage"
+          closable
+          transition="scale-transition"
+        ></v-alert>
+      </div>
+    </div>
     <div class="lstCard">
       <div class="title"><h1>Revenus et dépenses</h1></div>
-
       <Card
         class="card"
         v-for="(card, index) in transactionList"
         :key="index"
         :info_item="card"
+        :updateList="updateList"
       />
     </div>
     <div class="divNew">
@@ -153,6 +165,13 @@ export default {
     return { modal, date, saveDate, formattedDate, form };
   },
   methods: {
+    async updateList() {
+      this.alert = false;
+      this.alert = true;
+      this.alertTitle = "Suppression !";
+      this.alertMessage = "Revenu/Dépense bien supprimé(e)";
+      this.resetList();
+    },
     async ajouterDepense() {
       if (
         this.price != "" &&
@@ -189,7 +208,15 @@ export default {
           });
 
           if (response.ok) {
-            // La requête a réussi
+            this.alert = false;
+            this.alert = true;
+            if (this.selectedType === "Dépense") {
+              this.alertMessage = "Dépense ajoutée";
+            } else {
+              this.alertMessage = "Revenu ajouté";
+            }
+            this.alertTitle = "Ajout !";
+
             this.resetList();
             this.resetForm();
             console.log("Dépense ajoutée avec succès !");
@@ -244,6 +271,9 @@ export default {
   },
   data() {
     return {
+      alertTitle: "alertTitle",
+      alertMessage: "alert",
+      alert: false,
       nameRules: [
         (v) => !!v || "Le nom est obligatoire",
         (v) => v.length < 50 || "Le nom ne doit pas dépasser 50 caractères",
@@ -321,12 +351,25 @@ export default {
   flex-direction: row;
   justify-content: space-around;
 
+  .alert-container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    .alert {
+      position: fixed;
+      width: 25%;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+  }
+
   .lstCard {
     width: 50%;
     display: flex;
     flex-direction: column;
     padding: 20px 50px;
-
+    height: 100%;
     .card {
       margin: 5px;
       &:hover {

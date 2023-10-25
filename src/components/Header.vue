@@ -102,7 +102,8 @@ export default {
 <style lang="scss">
 .header {
   background: #94bbe9;
-  height: 10%;
+  min-height: 80px;
+  max-height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -111,8 +112,8 @@ export default {
 
   .logo {
     img {
-      width: 75px;
-      height: 75px;
+      width: 50px;
+      height: 50px;
     }
   }
   .navigation {

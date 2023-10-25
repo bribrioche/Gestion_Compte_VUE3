@@ -26,6 +26,7 @@ import { mdiTriangleSmallDown } from "@mdi/js";
 import { mdiEye } from "@mdi/js";
 import { mdiHomeCircle } from "@mdi/js";
 import { mdiCalendarMonth } from "@mdi/js";
+import { mdiDelete } from "@mdi/js";
 
 const routes = [
   { path: "/", component: Home, meta: { requiresAuth: true } },
@@ -53,6 +54,7 @@ const vuetify = createVuetify({
       eye: mdiEye,
       home: mdiHomeCircle,
       calendar: mdiCalendarMonth,
+      delete: mdiDelete,
     },
     sets: {
       mdi,

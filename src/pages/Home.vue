@@ -13,11 +13,11 @@
           <h4 class="less" v-if="total < 0">{{ total }}€</h4>
         </div>
       </div>
-      <div class="buttons">
+      <!-- <div class="buttons">
         <v-btn variant="flat" color="grey-lighten-4" prepend-icon="$eye"
           >Voir mon profil</v-btn
         >
-      </div>
+      </div> -->
     </v-card>
 
     <router-link to="/bankaccount" class="card">
@@ -134,13 +134,13 @@ export default {
   flex-wrap: wrap;
 
   .cardAccount {
-    padding: 0 50px;
-    width: 80%;
+    padding: 0 20px;
+    width: 65%;
     height: 250px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 70px;
+    margin: 3vw;
 
     .infos {
       height: auto;

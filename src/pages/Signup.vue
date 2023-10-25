@@ -256,13 +256,12 @@ export default {
     position: absolute;
     width: 100%;
     height: 100vh;
-    /* Assure que l'alerte occupe toute la hauteur de la page */
     .alert {
       position: absolute;
       width: 25%;
       top: 20px;
       right: 20px;
-      /* Positionne l'alerte en haut à gauche avec une marge de 20px à partir du haut et de la gauche */
+      z-index: 1000;
     }
   }
 
